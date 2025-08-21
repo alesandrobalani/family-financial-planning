@@ -11,11 +11,19 @@ import jakarta.persistence.*
 data class CategoryEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
-    val name: String
+    @Column(nullable = false, length = 70)
+    val name: String,
+    @Column(nullable = false, length = 70)
+    val regexName: String
 ) {
     fun toDomain() = Category(id, name)
     companion object {
-        fun fromDomain(category: Category) = CategoryEntity(category.id, category.name)
+        fun fromDomain(category: Category) =
+            CategoryEntity(
+                category.id,
+                category.name,
+                category.name.replace("[^a-zA-Z0-9]".toRegex(), "")
+            )
     }
 }
 
