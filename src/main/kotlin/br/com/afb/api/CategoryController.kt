@@ -2,8 +2,12 @@ package br.com.afb.api
 
 import br.com.afb.application.CreateCategoryUseCase
 import br.com.afb.domain.Category
-import org.springframework.web.bind.annotation.*
 import jakarta.validation.Valid
+import jakarta.validation.constraints.Size
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/categories")
@@ -18,6 +22,5 @@ class CategoryController(
 }
 
 data class CategoryRequest(
-    val id: Long? = null,
     @field:Size(max=70, message = "The category name must be minor then 70 characters")
     val name: String)
