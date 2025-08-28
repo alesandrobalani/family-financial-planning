@@ -1,4 +1,4 @@
-package br.com.afb.family_financial_planning
+package br.com.afb
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

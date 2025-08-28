@@ -38,4 +38,7 @@ class CategoryRepositoryImpl(
         val entity = CategoryEntity.fromDomain(category)
         return jpaRepository.save(entity).toDomain()
     }
+    override fun findAll(): List<Category> {
+        return jpaRepository.findAll().map { it.toDomain() }
+    }
 }

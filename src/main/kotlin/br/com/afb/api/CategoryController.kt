@@ -4,13 +4,14 @@ import br.com.afb.application.CreateCategoryUseCase
 import br.com.afb.domain.Category
 import jakarta.validation.Valid
 import jakarta.validation.constraints.Size
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/categories")
+@RequestMapping("/api/categories")
 class CategoryController(
     private val createCategoryUseCase: CreateCategoryUseCase
 ) {
@@ -18,6 +19,11 @@ class CategoryController(
     fun create(@RequestBody @Valid request: CategoryRequest): Category {
         val category = Category(name = request.name)
         return createCategoryUseCase.execute(category)
+    }
+
+    @GetMapping
+    fun getAll(): List<Category> {
+        return createCategoryUseCase.findAll()
     }
 }
 
