@@ -1,0 +1,5 @@
+CREATE TABLE categories (
+    id BINARY(16) NOT NULL PRIMARY KEY,
+    name VARCHAR(70) NOT NULL,
+    regex_name VARCHAR(70) NOT NULL
+);
